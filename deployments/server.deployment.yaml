@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-ping-pong
+  labels:
+    app: go-example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-example
+  template:
+    metadata:
+      labels:
+        app: go-example
+    spec:
+      containers:
+        - name: go-runner
+          image: quay.io/jakob_schlichting/go_ping_pong
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
